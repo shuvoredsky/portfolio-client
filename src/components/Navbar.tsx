@@ -64,7 +64,7 @@ export default function Navbar() {
       <div className="px-6 flex items-center justify-between">
         {/* Logo */}
         <Link href="#hero" className="font-heading font-bold text-xl tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-          <span className="bg-gradient-to-r from-brand-indigo to-brand-cyan bg-clip-text text-transparent">Portfolio.</span>
+          <span className="bg-gradient-to-r from-brand-indigo to-brand-cyan bg-clip-text text-transparent">ShuvoRedSky</span>
         </Link>
 
         {/* Desktop Nav Items */}

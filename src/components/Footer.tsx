@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="w-full border-t border-slate-200 dark:border-white/5 bg-slate-100/30 dark:bg-slate-950/30 py-8 z-10 relative">
       <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="font-heading text-sm text-slate-500 dark:text-gray-400">
-          © {currentYear} <span className="text-slate-900 dark:text-white font-medium">Portfolio.</span> All rights reserved.
+          © {currentYear} <span className="text-slate-900 dark:text-white font-medium">ShuvoRedSky.</span> All rights reserved.
         </div>
         
         <div className="flex gap-6 text-sm text-slate-500 dark:text-gray-400">

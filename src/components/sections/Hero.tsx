@@ -104,7 +104,7 @@ interface HeroProps {
 
 export default function Hero({ data }: HeroProps) {
   const greeting = "Hello, I'm".split(" ");
-  const name = "Kumar".split("");
+  const name = "Shuvo Chakrabrati".split("");
   const profileImageUrl = data?.profileImageUrl;
   const heroBackgroundUrl = data?.heroBackgroundUrl;
 
@@ -171,7 +171,7 @@ export default function Hero({ data }: HeroProps) {
             </motion.div>
 
             <motion.h1 
-              className="font-heading text-5xl sm:text-6xl md:text-8xl font-extrabold tracking-tight leading-[0.95] text-slate-900 dark:text-white"
+              className="font-heading text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[0.95] text-slate-900 dark:text-white"
               variants={{
                 hidden: { opacity: 0 },
                 visible: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.25 } }
@@ -188,7 +188,7 @@ export default function Hero({ data }: HeroProps) {
                     visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 10 } }
                   }}
                 >
-                  {char}
+                  {char === ' ' ? '\u00A0' : char}
                 </motion.span>
               ))}
               <span className="text-brand-indigo font-black">.</span>
@@ -242,7 +242,7 @@ export default function Hero({ data }: HeroProps) {
               {profileImageUrl ? (
                 <Image
                   src={profileImageUrl}
-                  alt="Kumar Avatar Profile"
+                  alt="Shuvo Chakrabrati Profile"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                   priority
@@ -250,7 +250,7 @@ export default function Hero({ data }: HeroProps) {
                 />
               ) : (
                 <div className="text-5xl md:text-6xl font-heading font-black text-transparent bg-clip-text bg-gradient-to-tr from-brand-indigo to-brand-cyan select-none">
-                  K
+                  S
                 </div>
               )}
             </div>

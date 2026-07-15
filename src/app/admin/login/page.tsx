@@ -80,7 +80,7 @@ export default function AdminLogin() {
               </span>
               <input
                 type="email"
-                placeholder="admin@portfolio.com"
+                placeholder="kumarshuvo265@gmail.com"
                 {...register('email')}
                 className="w-full text-sm bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-white/5 rounded-xl pl-11 pr-4 py-3 focus:outline-none focus:border-brand-indigo transition-colors text-slate-900 dark:text-white"
               />

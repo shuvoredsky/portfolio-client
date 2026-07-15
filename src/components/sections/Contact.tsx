@@ -78,8 +78,8 @@ export default function ContactSection() {
               </div>
               <div>
                 <p className="text-[10px] text-gray-500 font-semibold uppercase">Email</p>
-                <a href="mailto:admin@portfolio.com" className="text-sm font-semibold text-slate-750 dark:text-slate-300 hover:text-brand-cyan transition-colors">
-                  admin@portfolio.com
+                <a href="mailto:kumarshuvo265@gmail.com" className="text-sm font-semibold text-slate-750 dark:text-slate-300 hover:text-brand-cyan transition-colors">
+                  kumarshuvo265@gmail.com
                 </a>
               </div>
             </div>
@@ -90,8 +90,8 @@ export default function ContactSection() {
               </div>
               <div>
                 <p className="text-[10px] text-gray-500 font-semibold uppercase">Phone</p>
-                <a href="tel:+8801700000000" className="text-sm font-semibold text-slate-755 dark:text-slate-300 hover:text-brand-cyan transition-colors">
-                  +880 1700-000000
+                <a href="tel:+8801732629543" className="text-sm font-semibold text-slate-755 dark:text-slate-300 hover:text-brand-cyan transition-colors">
+                  +880 1732-629543
                 </a>
               </div>
             </div>

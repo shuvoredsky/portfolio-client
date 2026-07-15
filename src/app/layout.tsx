@@ -16,7 +16,7 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  title: 'Portfolio | High-End Creative Developer',
+  title: 'Shuvo Chakrabrati | High-End Creative Developer',
   description: 'Production-grade animated portfolio showcasing projects, experience, and tech stack.',
 };
 
@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${sora.variable}`}>
+    <html lang="en" className={`${inter.variable} ${sora.variable}`} suppressHydrationWarning>
       <body className="antialiased min-h-screen flex flex-col justify-between overflow-x-hidden">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           {/* Subtle noise grain filter overlay */}
