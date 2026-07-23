@@ -32,10 +32,13 @@ export default function RootLayout({
           {/* Subtle noise grain filter overlay */}
           <div className="noise-overlay" />
 
-          {/* Animated decorative glow blobs in the background */}
-          <div className="absolute top-[10%] left-[5%] w-72 h-72 rounded-full bg-brand-indigo/5 dark:bg-brand-indigo/10 blur-3xl animate-blob pointer-events-none z-0" />
-          <div className="absolute top-[40%] right-[5%] w-96 h-96 rounded-full bg-brand-cyan/5 blur-3xl animate-blob pointer-events-none z-0" style={{ animationDelay: '2s' }} />
-          <div className="absolute bottom-[20%] left-[10%] w-80 h-80 rounded-full bg-brand-indigo/5 blur-3xl animate-blob pointer-events-none z-0" style={{ animationDelay: '4s' }} />
+          {/* Background Decorative Layer (Constrained to prevent viewport overflow) */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+            {/* Animated decorative glow blobs in the background */}
+            <div className="absolute top-[10%] left-[5%] w-72 h-72 rounded-full bg-brand-indigo/5 dark:bg-brand-indigo/10 blur-3xl animate-blob pointer-events-none" />
+            <div className="absolute top-[40%] right-[5%] w-96 h-96 rounded-full bg-brand-cyan/5 blur-3xl animate-blob pointer-events-none" style={{ animationDelay: '2s' }} />
+            <div className="absolute bottom-[20%] left-[10%] w-80 h-80 rounded-full bg-brand-indigo/5 blur-3xl animate-blob pointer-events-none" style={{ animationDelay: '4s' }} />
+          </div>
 
           <Navbar />
           

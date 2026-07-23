@@ -104,18 +104,18 @@ interface HeroProps {
 
 export default function Hero({ data }: HeroProps) {
   const greeting = "Hello, I'm".split(" ");
-  const name = "Shuvo Chakrabrati".split("");
+  const nameWords = "Shuvo Chakrabrati".split(" ");
   const profileImageUrl = data?.profileImageUrl;
   const heroBackgroundUrl = data?.heroBackgroundUrl;
 
   return (
     <section 
       id="hero" 
-      className="min-h-[85vh] flex flex-col justify-center items-start relative select-none scroll-mt-24"
+      className="min-h-[85vh] w-full flex flex-col justify-center items-start relative select-none scroll-mt-24"
     >
       {/* Background image layer with reduced opacity and scrim gradient */}
       {heroBackgroundUrl && (
-        <div className="absolute inset-0 -mx-6 md:-mx-20 z-0 pointer-events-none overflow-hidden select-none">
+        <div className="absolute top-0 bottom-0 -left-6 -right-6 md:-left-20 md:-right-20 z-0 pointer-events-none overflow-hidden select-none">
           <Image
             src={heroBackgroundUrl}
             alt="Hero Background Scrim"
@@ -171,7 +171,7 @@ export default function Hero({ data }: HeroProps) {
             </motion.div>
 
             <motion.h1 
-              className="font-heading text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[0.95] text-slate-900 dark:text-white"
+              className="font-heading text-[32px] sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[0.95] text-slate-900 dark:text-white"
               variants={{
                 hidden: { opacity: 0 },
                 visible: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.25 } }
@@ -179,17 +179,22 @@ export default function Hero({ data }: HeroProps) {
               initial="hidden"
               animate="visible"
             >
-              {name.map((char, idx) => (
-                <motion.span 
-                  key={idx}
-                  className="inline-block"
-                  variants={{
-                    hidden: { opacity: 0, y: 40 },
-                    visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 10 } }
-                  }}
-                >
-                  {char === ' ' ? '\u00A0' : char}
-                </motion.span>
+              {nameWords.map((word, wIdx) => (
+                <span key={wIdx} className="inline-block whitespace-nowrap">
+                  {word.split("").map((char, cIdx) => (
+                    <motion.span 
+                      key={cIdx}
+                      className="inline-block"
+                      variants={{
+                        hidden: { opacity: 0, y: 40 },
+                        visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 10 } }
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                  {wIdx < nameWords.length - 1 && <span className="inline-block">&nbsp;</span>}
+                </span>
               ))}
               <span className="text-brand-indigo font-black">.</span>
             </motion.h1>
@@ -200,7 +205,7 @@ export default function Hero({ data }: HeroProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
-            className="font-heading text-xl sm:text-2xl md:text-4xl font-bold tracking-tight text-slate-800 dark:text-gray-200"
+            className="font-heading text-[17px] xs:text-lg sm:text-2xl md:text-4xl font-bold tracking-tight text-slate-800 dark:text-gray-200"
           >
             I am a <Typewriter words={roleTitles} />
           </motion.div>

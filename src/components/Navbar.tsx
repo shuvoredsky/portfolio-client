@@ -2,16 +2,14 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X, Sun, Moon, Download } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
 const navItems = [
-  { name: 'Hero', href: '#hero' },
   { name: 'About', href: '#about' },
   { name: 'Stack', href: '#stack' },
   { name: 'Experience', href: '#experience' },
   { name: 'Projects', href: '#projects' },
-  { name: 'Education', href: '#education' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -94,11 +92,19 @@ export default function Navbar() {
             {mounted && theme === 'dark' ? <Sun size={14} className="text-brand-cyan" /> : <Moon size={14} className="text-brand-indigo" />}
           </button>
 
+          <a
+            href="/Shuvo_Chakrabrati_CV.pdf"
+            download="Shuvo_Chakrabrati_CV.pdf"
+            className="text-xs font-semibold px-4 py-2 flex items-center gap-1.5 border border-brand-cyan/30 hover:border-brand-cyan bg-brand-cyan/10 text-brand-cyan hover:text-white rounded-full transition-all duration-300 hover:shadow-md hover:shadow-brand-cyan/20 cursor-pointer"
+          >
+            <Download size={13} /> Resume
+          </a>
+
           <Link
             href="/admin/login"
             className="text-xs font-semibold px-4 py-2 border border-brand-indigo/30 hover:border-brand-indigo bg-brand-indigo/10 text-brand-indigo hover:text-white rounded-full transition-all duration-300 hover:shadow-md hover:shadow-brand-indigo/20"
           >
-            Admin Dashboard
+            Admin
           </Link>
         </div>
 
@@ -124,7 +130,7 @@ export default function Navbar() {
 
       {/* Mobile nav items */}
       {isOpen && (
-        <div className="md:hidden mt-4 mx-2 p-6 glass-panel rounded-3xl flex flex-col gap-4 animate-in fade-in slide-in-from-top-5 duration-200">
+        <div className="md:hidden mt-4 mx-2 p-6 bg-slate-50/95 dark:bg-slate-950/95 backdrop-blur-lg rounded-3xl flex flex-col gap-4 border border-slate-200 dark:border-white/10 shadow-xl dark:shadow-black/40 animate-in fade-in slide-in-from-top-5 duration-200">
           {navItems.map((item) => (
             <Link
               key={item.name}
@@ -132,20 +138,28 @@ export default function Navbar() {
               onClick={() => setIsOpen(false)}
               className={`text-base font-semibold transition-colors duration-200 ${
                 activeSection === item.href.substring(1) 
-                  ? 'text-brand-cyan' 
-                  : 'text-slate-600 dark:text-slate-400'
+                  ? 'text-brand-cyan font-bold' 
+                  : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white'
               }`}
             >
               {item.name}
             </Link>
           ))}
           <div className="h-px bg-slate-200 dark:bg-white/5 my-2" />
+          <a
+            href="/Shuvo_Chakrabrati_CV.pdf"
+            download="Shuvo_Chakrabrati_CV.pdf"
+            onClick={() => setIsOpen(false)}
+            className="text-center text-sm font-semibold py-3 flex items-center justify-center gap-2 border border-brand-cyan/30 hover:border-brand-cyan bg-brand-cyan/10 text-brand-cyan hover:text-white rounded-xl transition-all cursor-pointer"
+          >
+            <Download size={15} /> Resume
+          </a>
           <Link
             href="/admin/login"
             onClick={() => setIsOpen(false)}
             className="text-center text-sm font-semibold py-3 border border-brand-indigo/30 hover:border-brand-indigo bg-brand-indigo/10 text-brand-indigo hover:text-white rounded-xl transition-all"
           >
-            Admin Dashboard
+            Admin
           </Link>
         </div>
       )}
