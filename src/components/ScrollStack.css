@@ -2,7 +2,7 @@
   position: relative;
   overflow-y: auto;
   overflow-x: visible;
-  overscroll-behavior: contain;
+  overscroll-behavior: auto;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
   -webkit-transform: translateZ(0);

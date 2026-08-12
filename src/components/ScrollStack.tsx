@@ -61,7 +61,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   const stackCompletedRef = useRef(false);
   const animationFrameRef = useRef<number | null>(null);
   const lenisRef = useRef<Lenis | null>(null);
-  const lastTransformsRef = useRef(new Map<number, any>());
+  const lastTransformsRef = useRef(new Map<number, { translateY: number; scale: number; blur: number; rotate: number }>());
   const isUpdatingRef = useRef(false);
 
   const calculateProgress = useCallback((scrollTop: number, start: number, end: number) => {
@@ -210,6 +210,52 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
     lenisRef.current = lenis;
 
+    // Wheel and touch events release handling at boundaries to avoid trapping parent scroll
+    let touchStartY = 0;
+
+    const handleWheelBoundary = (e: WheelEvent) => {
+      const isAtTop = scroller.scrollTop <= 0;
+      const maxScroll = scroller.scrollHeight - scroller.clientHeight;
+      const isAtBottom = scroller.scrollTop >= maxScroll - 2;
+
+      const scrollingUp = e.deltaY < 0;
+      const scrollingDown = e.deltaY > 0;
+
+      if ((isAtTop && scrollingUp) || (isAtBottom && scrollingDown)) {
+        // Stop propagation in the capture phase so Lenis does not prevent this scroll event
+        e.stopPropagation();
+      }
+    };
+
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 1) {
+        touchStartY = e.touches[0].clientY;
+      }
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length !== 1) return;
+
+      const touchCurrentY = e.touches[0].clientY;
+      const deltaY = touchStartY - touchCurrentY; // positive = swipe up (scrolling down), negative = swipe down (scrolling up)
+
+      const isAtTop = scroller.scrollTop <= 0;
+      const maxScroll = scroller.scrollHeight - scroller.clientHeight;
+      const isAtBottom = scroller.scrollTop >= maxScroll - 2;
+
+      const scrollingUp = deltaY < 0;
+      const scrollingDown = deltaY > 0;
+
+      if ((isAtTop && scrollingUp) || (isAtBottom && scrollingDown)) {
+        // Stop propagation in the capture phase so Lenis does not prevent this touch scroll
+        e.stopPropagation();
+      }
+    };
+
+    scroller.addEventListener('wheel', handleWheelBoundary, { capture: true, passive: true });
+    scroller.addEventListener('touchstart', handleTouchStart, { capture: true, passive: true });
+    scroller.addEventListener('touchmove', handleTouchMove, { capture: true, passive: true });
+
     const onScroll = () => {
       if (isUpdatingRef.current) return;
       isUpdatingRef.current = true;
@@ -243,6 +289,9 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
+      scroller.removeEventListener('wheel', handleWheelBoundary, { capture: true });
+      scroller.removeEventListener('touchstart', handleTouchStart, { capture: true });
+      scroller.removeEventListener('touchmove', handleTouchMove, { capture: true });
     };
   }, [useWindowScroll, updateCardTransforms]);
 

@@ -46,7 +46,7 @@ function ProjectPlaceholder({ title }: { title: string }) {
 }
 
 export default function ProjectsSection({ items }: ProjectsSectionProps) {
-  const [viewMode, setViewMode] = useState<'grid' | 'slide'>('grid');
+  const [viewMode, setViewMode] = useState<'grid' | 'slide'>('slide');
   const projects = [...items].sort((a, b) => a.order - b.order);
 
   return (
