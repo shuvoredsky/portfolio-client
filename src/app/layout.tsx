@@ -4,6 +4,8 @@ import './globals.css';
 import { ThemeProvider } from '../components/ThemeProvider';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import ChatWidget from '../components/ChatWidget';
+import { Toaster } from 'sonner';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -47,6 +49,8 @@ export default function RootLayout({
           </main>
           
           <Footer />
+          <ChatWidget />
+          <Toaster richColors position="top-right" />
         </ThemeProvider>
       </body>
     </html>

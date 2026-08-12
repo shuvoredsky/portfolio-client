@@ -1,4 +1,4 @@
-import { Project, TechStack, Experience, Education, ContactMessage, AboutContent } from '../types';
+import { Project, TechStack, Experience, Education, ContactMessage, AboutContent, ChatMessage } from '../types';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1';
 
@@ -88,6 +88,16 @@ export const api = {
 
   submitContactMessage: async (data: { name: string; email: string; message: string }): Promise<ContactMessage> => {
     return fetchJson<ContactMessage>('/contact', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  },
+
+  sendChatMessage: async (data: {
+    message: string;
+    history: ChatMessage[];
+  }): Promise<{ reply: string }> => {
+    return fetchJson<{ reply: string }>('/chat', {
       method: 'POST',
       body: JSON.stringify(data),
     });
